@@ -1,0 +1,17 @@
+import svgwrite
+import cairosvg
+
+def bezier_to_svg(bezier_curves, svg_path):
+    dwg = svgwrite.Drawing(svg_path, profile='tiny', shape_rendering='crispEdges')
+    for curve in bezier_curves:
+        path_data = []
+        for segment in curve:
+            path_data.append(("M", (segment[0, 0], segment[0, 1])))
+            for i in range(1, len(segment)):
+                path_data.append(("L", (segment[i, 0], segment[i, 1])))
+            path_data.append(("Z", None))
+        dwg.add(dwg.path(d=path_data, fill='none', stroke='black', stroke_width=2))
+    dwg.save()
+
+def rasterize_svg(svg_path, png_path):
+    cairosvg.svg2png(url=svg_path, write_to=png_path)

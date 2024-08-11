@@ -1,0 +1,21 @@
+def curvetopia_algorithm(csv_path, svg_output_path, png_output_path):
+    # Step 1: Input Processing
+    paths_XYs = read_csv(csv_path)
+    bezier_curves = convert_to_bezier(paths_XYs)
+    
+    # Step 2: Curve Regularization
+    regularized_curves = [regularize_curve(curve) for curve in bezier_curves]
+    
+    # Step 3: Symmetry Detection
+    symmetric_curves = detect_and_apply_symmetry(regularized_curves)
+    
+    # Step 4: Curve Completion
+    completed_curves = complete_curves(symmetric_curves)
+    
+    # Step 5: Output Generation
+    bezier_to_svg(completed_curves, svg_output_path)
+    rasterize_svg(svg_output_path, png_output_path)
+    print(f"SVG and PNG outputs saved to {svg_output_path} and {png_output_path}, respectively.")
+
+# Example usage
+curvetopia_algorithm('examples/isolated.csv', 'output.svg', 'output.png')

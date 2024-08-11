@@ -1,0 +1,25 @@
+def regularize_curve(bezier_curve):
+    if is_straight_line(bezier_curve):
+        return regularize_line(bezier_curve)
+    elif is_circle(bezier_curve):
+        return regularize_circle(bezier_curve)
+    elif is_ellipse(bezier_curve):
+        return regularize_ellipse(bezier_curve)
+    elif is_polygon(bezier_curve):
+        return regularize_polygon(bezier_curve)
+    elif is_rectangle(bezier_curve):
+        return regularize_rectangle(bezier_curve)
+    elif is_star(bezier_curve):
+        return regularize_star(bezier_curve)
+    else:
+        return bezier_curve  # Irregular shapes remain unchanged
+
+def is_straight_line(curve):
+    # Detect if the curve is a straight line
+    return True  # Simplified check
+
+def regularize_line(curve):
+    # Return a straight line version of the curve
+    return curve
+
+# Similarly, implement other regularization functions
